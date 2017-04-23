@@ -1,4 +1,4 @@
-Basics Two: MCollective/ActiveMQ.
+# Basics Two: MCollective/ActiveMQ.
 Focus on determining how ActiveMQ and MCollective work.
 Environment requires at least one PE master and one PE agent (separate machines)
 Use network analysis tools (tcpdump)

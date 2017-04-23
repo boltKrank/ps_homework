@@ -32,5 +32,5 @@ Familiarize yourself with common Windows administration tasks, and how they diff
 ### Install 7-zip using chocolatey
 ## Reboots
 ### Extend your 7-zip code to reboot the system after installing 7-zip
-### Uninstall 7-zip and verify that the system reboots after reinstalling
-### Define the different conditions that can be used to trigger a reboot with the puppetlabs/reboot module. How do they differ from one another?
+#### Uninstall 7-zip and verify that the system reboots after reinstalling
+#### Define the different conditions that can be used to trigger a reboot with the puppetlabs/reboot module. How do they differ from one another?
