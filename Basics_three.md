@@ -143,7 +143,7 @@ Permissions based on mode is : 2000700
 #### How do Windows ACLs differ from unix filesystem permissions?
 
 
-
+To add.
 
 
 
@@ -153,9 +153,10 @@ Permissions based on mode is : 2000700
 #### Enable Internet Explorer enhanced security configuration
 
   ```
-  registry_key{
-
-
+  registry_value {'HKLM\SOFTWARE\Microsoft\Active Setup\Installed Components\{A509B1A7-37EF-4b3f-8CFC-4F3A74704073}':
+      ensure => present,
+      type   => dword,
+      data   => "1",
   }
   ```
 
@@ -178,12 +179,19 @@ registry_key{
 
 
 ## IIS
+
 ### Use the DISM, Windowsfeature or DSC (via Puppet) to install IIS
+
 ### Use the opentable/iis module to create a basic website
+
 ### Explain the difference between installing IIS and installing apache
+
+
 ## Package Management
 ### Install 7-zip using the staging module
 ### Install 7-zip using chocolatey
+
+
 ## Reboots
 ### Extend your 7-zip code to reboot the system after installing 7-zip
 #### Uninstall 7-zip and verify that the system reboots after reinstalling

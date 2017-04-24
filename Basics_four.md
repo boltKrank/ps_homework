@@ -1,4 +1,4 @@
-Basics Four: Scope
+# Basics Four: Scope
 Get a deep understanding of Scope.
 Think about things such as:
 Using variables from a params in the parameter area of a class or defined resource (how you would do this?)
