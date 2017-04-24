@@ -99,19 +99,84 @@ Familiarize yourself with common Windows administration tasks, and how they diff
 
 #### Inspect the directory permissions
 
+*output:*
+```
+PS C:\ProgramData\PuppetLabs\code\environments\production\modules> puppet resource file "C:/tmp/exampledir"
+file { 'C:/tmp/exampledir':
+  ensure => 'directory',
+  ctime  => '2017-04-24 03:10:16 +0000',
+  group  => 'S-1-5-21-1953236517-242735908-2433092285-1002',
+  mode   => '2000700',
+  mtime  => '2017-04-24 03:10:16 +0000',
+  owner  => 'S-1-5-21-1953236517-242735908-2433092285-1001',
+  type   => 'directory',
+}
+```
+
+Permissions based on mode is : 2000700
 
 
 ### Manage the directory permissions using the acl module
+
+
+
 #### Grant the local user Full Control
+
+  ```
+  acl{ 'C:/tmp/exampledir':
+    permissions => [
+      {identity => 'tim', right => ['full']}
+    ],
+  }
+  ```
+
 #### Grant the local group Read Only permissions
+
+  ```
+  acl{ 'C:/tmp/exampledir':
+    permissions => [
+      {identity => 'team apj', rights => ['read']}
+    ]
+  }
+  ```
+
 #### How do Windows ACLs differ from unix filesystem permissions?
+
+
+
+
+
+
 ## Registry
 ### Use the registry module to do the following:
+
 #### Enable Internet Explorer enhanced security configuration
+
+  ```
+  registry_key{
+
+
+  }
+  ```
+
+
 #### Enable the Windows Shutdown Event Tracker
-### Explain the difference between the following keys
-#### HKEY_LOCAL_MACHINE
-#### HKEY_CURRENT_USER
+
+```
+registry_key{
+
+
+}
+```
+
+
+### Explain the difference between the following keys HKEY_LOCAL_MACHINE and HKEY_CURRENT_USER:
+
+ - HKEY_CURRENT_USER is only applicable to one user while HKEY_LOCAL_MACHINE is applicable to all
+ - HKEY_LOCAL_MACHINE is always available while HKEY_CURRENT_USER for a specific user is only available when he logs-in
+ - HKEY_LOCAL_MACHINE are loaded on start-up while HKEY_CURRENT_USER are loaded on log-in
+
+
 ## IIS
 ### Use the DISM, Windowsfeature or DSC (via Puppet) to install IIS
 ### Use the opentable/iis module to create a basic website
