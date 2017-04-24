@@ -12,7 +12,7 @@ Familiarize yourself with common Windows administration tasks, and how they diff
   }
   ```
 
-  NOTE: uid is automatically generated.
+  *NOTE: uid is automatically generated.*
 
 ### Create a local group
 
@@ -23,19 +23,84 @@ Familiarize yourself with common Windows administration tasks, and how they diff
   }
   ```
 
-  NOTE: gid is automatically generated.
+  *NOTE: gid is automatically generated.*
 
 ### Add the user to the group
 
+  There are two ways of doing this:
 
+  ```
+  user{"tim":
+    ensure => present,
+    groups => ['team apj'],
+  }
+  ```
+
+  *or*
+
+  ```
+  group{"team apj":
+    ensure  => present,
+    members => ['tim'],
+  }
+  ```
 
 ### Grant your user the "Log on as a Service" right
+
+  ```
+  user{"tim":
+    ensure => present,
+    groups => ['team apj'],
+
+  }
+  ```  
+
+
 #### Explain what the "Log on as a Service" right does
+*The Log on as a service user right allows accounts to start network services or services that run continuously on a computer, even when no one is logged on to the console.*
+
+
+
 ## File and directory permissions
+
 ### Create a new directory
+
+```
+  file{"C:/tmp/exampledir":
+    ensure => directory,
+  }
+
+```
+
 #### Set its owner to the user you created above using the owner attribute
+
+```
+  file{"C:/tmp/exampledir":
+    ensure  => directory,
+    owner   => 'tim',
+  }
+
+```
+*NOTE: In the resource output the owner is recorded by the uid reference, not the actual username*
+
+
 #### Set its group to the group you created above using the group attribute
+
+```
+  file{"C:/tmp/exampledir":
+    ensure  => directory,
+    owner   => 'tim',
+    group   => 'team apj',
+  }
+
+```
+*NOTE: In the resource output the group is recorded by the gid reference, not the actual group name*
+
+
 #### Inspect the directory permissions
+
+
+
 ### Manage the directory permissions using the acl module
 #### Grant the local user Full Control
 #### Grant the local group Read Only permissions
