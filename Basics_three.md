@@ -2,9 +2,33 @@
 Familiarize yourself with common Windows administration tasks, and how they differ from their Linux counterparts:
 
 ## Local Accounts
+
 ### Create a local user
+
+  Creating a user of name "tim":
+  ```
+  user{"tim":
+    ensure => present,
+  }
+  ```
+
+  NOTE: uid is automatically generated.
+
 ### Create a local group
+
+  Creating a group called "team apj":
+  ```
+  group{"team apj":
+    ensure => present,
+  }
+  ```
+
+  NOTE: gid is automatically generated.
+
 ### Add the user to the group
+
+
+
 ### Grant your user the "Log on as a Service" right
 #### Explain what the "Log on as a Service" right does
 ## File and directory permissions
