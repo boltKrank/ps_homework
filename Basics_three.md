@@ -144,7 +144,7 @@ Permissions based on mode is : 2000700
 
 
 To add.
-
+http://www.networkworld.com/article/2230977/microsoft-subnet/comparing-access-control-in-windows-and-linux.html
 
 
 ## Registry
@@ -188,11 +188,53 @@ registry_key{
 
 
 ## Package Management
+
+Using package resource:
+
+```
+  package{'7zip':
+    ensure => installed,
+    source => 'http://www.7-zip.org/a/7z1604-x64.msi',
+  }
+```
+
 ### Install 7-zip using the staging module
+
+
+
 ### Install 7-zip using chocolatey
+
+```
+  package{'7zip':
+    ensure    => latest,
+    provider  => 'chocolatey',
+  }
+```
 
 
 ## Reboots
+
+
 ### Extend your 7-zip code to reboot the system after installing 7-zip
+
+```
+  package{'7zip':
+    ensure    => latest,
+    provider  => 'chocolatey',
+  }
+
+  reboot {'after':
+    subscribe => Package['7zip'],
+  }
+
+```
+
 #### Uninstall 7-zip and verify that the system reboots after reinstalling
+
+Worked
+
 #### Define the different conditions that can be used to trigger a reboot with the puppetlabs/reboot module. How do they differ from one another?
+
+- Subscribe / notify: reboots after a refresh is sent, received.
+- Pending: will reboot if there is a pending reboot waiting
+- apply => finished: will only reboot once ALL packages in the catalog have been processed.
