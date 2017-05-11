@@ -1,9 +1,16 @@
 # Basics Two: MCollective/ActiveMQ.
-### Focus on determining how ActiveMQ and MCollective work.
-### Environment requires at least one PE master and one PE agent (separate machines)
-### Use network analysis tools (tcpdump)
+
+#### Focus on determining how ActiveMQ and MCollective work.
+#### Environment requires at least one PE master and one PE agent (separate machines)
+#### Use network analysis tools (tcpdump)
+
+
 ### Determine who makes the connection; the ActiveMQ broker or the MCollective service?
+
+
 ### How do messages get to the subscribers?
+
+
 ### Data flow
 ### What are subcollectives? How are they implemented?
 ### What allows a MCollective publisher to interact with a MCollective server? Think security measures.
