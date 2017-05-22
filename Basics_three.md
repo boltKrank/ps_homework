@@ -164,9 +164,10 @@ http://www.networkworld.com/article/2230977/microsoft-subnet/comparing-access-co
 #### Enable the Windows Shutdown Event Tracker
 
 ```
-registry_key{
-
-
+registry_value { 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Reliability':
+  ensure  => present,
+  type    => 'REG_DWORD'
+  data    => 0,  
 }
 ```
 
@@ -182,7 +183,15 @@ registry_key{
 
 ### Use the DISM, Windowsfeature or DSC (via Puppet) to install IIS
 
+```
+  windowsfeature { 'Web-Server':
+    ensure => present,
+  }
+```
+
 ### Use the opentable/iis module to create a basic website
+
+
 
 ### Explain the difference between installing IIS and installing apache
 
