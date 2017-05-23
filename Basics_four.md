@@ -17,4 +17,8 @@ Write a report on scope and include code examples.
 
 ## Report:
 
-In Puppet variable values can be defined in various places, not necessarily in the class/file you are working in or referencing from.
+NOTE: For example's sake everything here will be done in a module called "myModule"
+
+![Puppet Scope](/basics_four_images/scope.png)
+
+### Using params:
