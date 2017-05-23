@@ -183,11 +183,20 @@ registry_value { 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\R
 
 ### Use the DISM, Windowsfeature or DSC (via Puppet) to install IIS
 
+After installing the module:
+
+```
+puppet module install puppet-windowsfeature
+```
+
+####Windowsfeature:
+
 ```
   windowsfeature { 'Web-Server':
     ensure => present,
   }
 ```
+
 
 ### Use the opentable/iis module to create a basic website
 

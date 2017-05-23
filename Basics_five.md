@@ -1,4 +1,50 @@
 # Basics Five: Workflow including r10k and eyaml
+
+### Environments:
+
+
+#### Development:
+
+**PuppetFile:**
+```
+
+```
+
+**environment.conf:**
+```
+```
+**site.pp:**
+```
+```
+
+
+#### Staging:
+**PuppetFile:**
+```
+
+```
+
+
+#### Production:
+**PuppetFile:**
+```
+
+```
+
+
+### Modules:
+
+**Git version (init.pp):**
+
+```
+class gitversion{
+
+  
+
+}
+```
+
+
 Investigate how r10k works in an environment.
 PE puppetserver
 PE puppet agent (separate server)
