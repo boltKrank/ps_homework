@@ -7,7 +7,10 @@
 
 **PuppetFile:**
 ```
-
+mod 'puppetlabs-stdlib', '4.17.0'
+mod 'puppetlabs-concat', '4.0.0'
+mod 'puppetlabs-apache', '1.11.0'
+mod 'puppetlabs-mysql',
 ```
 
 **environment.conf:**
@@ -21,29 +24,44 @@
 #### Staging:
 **PuppetFile:**
 ```
-
+mod 'puppetlabs-stdlib', '4.13.1'
+mod 'puppetlabs-concat', '3.0.0'
+mod 'puppetlabs-apache', '1.10.0'
+mod 'puppetlabs-mysql',
 ```
 
 
 #### Production:
 **PuppetFile:**
 ```
-
+mod 'puppetlabs-stdlib', '4.9.1'
+mod 'puppetlabs-concat', '2.2.1'
+mod 'puppetlabs-apache', '1.8.1'
+mod 'puppetlabs-mysql',  
 ```
 
 
 ### Modules:
 
-**Git version (init.pp):**
+**Git version:**
 
+*manifests/init.pp:*
 ```
 class gitversion{
 
-  
+  notify{ 'git_version':
+    message => "$git_version",
+  }
 
 }
 ```
 
+*facts.d/git_version.rb:*
+```
+Facter.add('git_version') do
+  setcode "git version"
+end
+```
 
 Investigate how r10k works in an environment.
 PE puppetserver
