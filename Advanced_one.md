@@ -4,7 +4,7 @@ The PSE requires a full PE master and agent (a separate agent makes this easier)
 Look at the module and understand what is being attempted.
 
 
-###Classify the node with scoping::test_out, run Puppet and observe results.
+### Classify the node with scoping::test_out, run Puppet and observe results.
 
 *Output:*
 ```
@@ -29,7 +29,7 @@ Notice: /Stage[main]/Scoping::Base/Host[pe-puppet.localdomain]/ensure: removed
 Notice: Applied catalog in 2.10 seconds
 ```
 
-###Reclassify the node with scoping::test_in_0, run Puppet and observe.
+### Reclassify the node with scoping::test_in_0, run Puppet and observe.
 ```
 Warning: Unable to fetch my node definition, but the agent run will continue:
 Warning: Connection refused - connect(2) for "pe-puppet.localdomain" port 8140
@@ -46,8 +46,8 @@ Error: Could not retrieve catalog; skipping run
 Error: Could not send report: Connection refused - connect(2) for "pe-puppet.localdomain" port 8140
 ```
 
-###Explain, IN DETAIL, why all the virtual resources were realised.
-###Reclassify the node with scoping::test_in_1 and prove your theory is correct.
+### Explain, IN DETAIL, why all the virtual resources were realised.
+### Reclassify the node with scoping::test_in_1 and prove your theory is correct.
 
 *Output:*
 ```
@@ -61,7 +61,7 @@ Send your explanation to your manager.
 
 
 
-##Analysis:
+## Analysis:
 
 *before puppet run, /etc/hosts:*
 ```
