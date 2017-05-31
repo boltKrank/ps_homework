@@ -54,6 +54,7 @@ class myClass(
     $param2 = "p2",
   ){
 
+    #add other rubbish here
 
 }
 ```
@@ -64,6 +65,8 @@ define myClass::specialResouce(
     $magicNumber  = '80',
     recName       = $title,
   ){
+
+    #stuff that makes the defined resource valuable here
 
 }
 ```
@@ -77,3 +80,9 @@ i.e.:
 Resource defaults use dynamic scope.
 
 ### Resource collectors:
+
+### Issues with overriding a parent via inheritence:
+
+### Resource defaults in site.pp:
+
+Resource defaults can be defined in the site.pp file. The result will be a node-level resource default.
