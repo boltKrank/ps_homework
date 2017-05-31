@@ -197,12 +197,32 @@ puppet module install puppet-windowsfeature
   }
 ```
 
+####DSC:
+
+```
+  dsc_windowsfeature {'IIS':
+    dsc_ensure => 'present',
+    dsc_name   => 'Web-Server',
+  }
+```
 
 ### Use the opentable/iis module to create a basic website
 
+```
+  iis_site{ 'Basic Web Site':
+    ensure => 'started',
+    path   => 'C:\www\',
+    port   => '8080',
+  }
 
+```
+*NOTE: 8080 was used to avoid conflicts with the default site installed by IIS*
+*Other option is to delete the default website via IIS Manager*
 
 ### Explain the difference between installing IIS and installing apache
+
+Apache is installed as a standalone application running atomically from the windows features, whereas
+IIS is installed as part of the windows feature set.
 
 
 ## Package Management
@@ -218,7 +238,24 @@ Using package resource:
 
 ### Install 7-zip using the staging module
 
+```
+class zipinstaller {
 
+  class {'staging':
+    path => 'C:/tmp',
+  }
+
+  staging::file {'7z1700-x64.msi':
+    source => 'http://www.7-zip.org/a/7z1700-x64.msi',
+  }
+
+  package{ '7zip':
+    source  => "${staging::path}/zipinstaller/7z1700-x64.msi",
+    require => Staging::File['7z1700-x64.msi'],
+  }
+
+}
+```
 
 ### Install 7-zip using chocolatey
 
