@@ -48,12 +48,41 @@ Familiarize yourself with common Windows administration tasks, and how they diff
 ### Grant your user the "Log on as a Service" right
 
   ```
-  user{"tim":
-    ensure => present,
-    groups => ['team apj'],
 
+  define windows_user::logon_service (
+    String  $user,
+    String  $domain,
+    Boolean $allow,
+    ){
+
+      user { $user:
+        ensure => present,
+      }
+
+      if($allow){
+        exec { "ntrights +r SeServiceLogonRight -u \"${domain}\${user}\"":
+          require => User[$user],
+        }   
+      }
+      else{
+        exec { "ntrights -r SeServiceLogonRight -u \"${domain}\${user}\"":
+          require => User[$user],
+        }   
+      }
   }
-  ```  
+
+  windows_user::logon_service{ 'tom':
+    user    => 'tom',
+    domain  => 'home',
+    allow   => true,
+  }
+
+  ```
+
+
+
+
+  ntrights +r SeServiceLogonRight -u "Domain\Administrator"
 
 
 #### Explain what the "Log on as a Service" right does
@@ -266,6 +295,11 @@ class zipinstaller {
   }
 ```
 
+
+### Packages in Windows (and how they differ from Linux):
+
+If using chocolatey as a provider, very little difference from a puppet point of view.
+If not, it'll default to msi/exe which means a source installer needs to be specified. ensure => latest doesn't work as versioning isn't supported, and if the name of the package resource doesn't match the displayName Puppet will try to reinstall the package every time.
 
 ## Reboots
 

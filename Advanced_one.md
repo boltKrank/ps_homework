@@ -1,3 +1,7 @@
+
+
+https://groups.google.com/forum/#!topic/puppet-users/Hm5oSYSKfU4
+
 Advanced One: Virtual Resources, Auto-tagging, and Scope
 The PSE should use the module downloadable from https://github.com/beergeek/scoping.git
 The PSE requires a full PE master and agent (a separate agent makes this easier).

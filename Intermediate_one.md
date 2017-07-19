@@ -1,4 +1,10 @@
-Intermediate One: Scaling
+#Intermediate One: Scaling
+
+## Multiple CAs in multi-master environments:
+
+
+
+
 Building on the last task.
 Options for multiple CA servers in a multi master environment?
 MCollective publisher on the GIT server for r10k hook updates on Masters.

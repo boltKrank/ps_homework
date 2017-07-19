@@ -93,7 +93,6 @@ class { '::mysql::server':
       ensure  => 'present',
       charset => 'utf8',
     },
-
   }
 
 }
