@@ -1,26 +1,14 @@
+# Advanced One: Virtual resources.
+
+## What happens:
+
+When scoping::test_out classification is applied to the node the hosts file is replaced by 2 host resources (via defined resources), as well as host entries for localhosts (standard resource declaration), and a host entry based of the $::fqdn fact received from the node being applied to (4 entries total).
+
+Although the class scoping::base is included in test_out, the virtual resources defined within it are outside the scope of the resource collectors in the outside.pp defined resources, and hence aren't realized.
+On the other hand, when classifying with scoping::test_in_0, since the class scoping::base is included within the scoping::inside defined resource block, the resource collector has access to all the virtual resources within it, and realizes them all.
 
 
-https://groups.google.com/forum/#!topic/puppet-users/Hm5oSYSKfU4
-
-Advanced One: Virtual Resources, Auto-tagging, and Scope
-The PSE should use the module downloadable from https://github.com/beergeek/scoping.git
-The PSE requires a full PE master and agent (a separate agent makes this easier).
-Look at the module and understand what is being attempted.
-
-
-### Classify the node with scoping::test_out, run Puppet and observe results.
-
-When classifying with scoping::test_out, it's adding 'h0', 'pdb', and the fqdn to the hosts file, but
-
-### Explain, IN DETAIL, why all the virtual resources were realised.
-
-When classifying, including the scoping::base class from within the scoping::inside declaration, as opposed to
-including it outside of the declaration (as seen in scoping::outside) all the virtual resources are realised.
-
-
-
-
-## Analysis:
+## Apendix (outputs):
 
 *before puppet run, /etc/hosts:*
 ```

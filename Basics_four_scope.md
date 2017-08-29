@@ -33,6 +33,23 @@ define defrec(
 The above examples shows parameter variables for defined resources as well as for classes. Placing the variable assignments within parenthesis after the class or defined variable name makes the variables parameter variables. This makes the values available throughout that class. In templates you can access these variables using classname::variable_name or just the variable name on its own for ERB templates.
 
 
+## EPP vs ERB:
+
+EPP you pass variables via the function, i.e.:
+
+class simon{
+
+$variable3 = 'value3'
+
+content => epp('module/template.epp', {
+           variable1 => 'value1',
+           variable2 => 'value2',}),
+}
+
+
+This will give the EPP template access to variables with names $variable1 and $variable2. The template can also access the variables of the calling class by using <%= $simon::variable3 %>. In ERB you don't need to pass the variables to the function, ERB has access to all the variables in the calling class. So in the above example, you'd just put <%= @variable3 %> to get its value.
+
+
 ## Resource defaults:
 
 ```
@@ -95,3 +112,8 @@ Resource defaults used in site.pp within node definitions are inherited by all c
 - OVERRIDING: Variables passed in at the node classifier can't be overridden. If they are not passed in Puppet will use Hiera lookup and then result to the default if available. Otherwise it will be an undefined variable.
 
 - CHECKS AND ADVANTAGES: The advantage of things being input via the console is that they are easy to look up and see via classification groups. Also, you can query these results via the PuppetDB API. At the moment, if data-types are specified, then Puppet will make sure the inputted value isn't blank, and matches such a type, or in some cases such as String - converting the inputted value to that type.
+
+## Disadvantages of using node classifier compared to site.pp:
+
+1. Site.pp is text, and can be used with a version control system, whereas node classifier is DB based.
+2. In site.pp anything defined outside the node declarations is treated like a global default, which can be useful in some situations, this functionality isn't possible via node classifier.
