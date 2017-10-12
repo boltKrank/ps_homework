@@ -1,5 +1,18 @@
 # Intermediate One: Scaling and HA
 
+## Creating an HA replica:
+
+To create an HA replica from a vanilla PE Master install:
+
+-
+
+## Creating compile masters
+
+To make a node into a compile master, the first thing we'll need to do is allow them to sign certificates.
+
+
+
+
 
 In SLICE or VMPooler.
 
